@@ -1,0 +1,14 @@
+{
+  "name": "pow-mdns",
+  "version": "0.1.0",
+  "description": "Advertise Pow applications on the local network using Bonjour or Avahi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Attila Györffy",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "mdns": "~1.1.0"
+  }
+}
