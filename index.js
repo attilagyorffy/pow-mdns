@@ -32,31 +32,47 @@
 var pow_applications = ['example', 'pow']; // these will start advertising example.dev and pow.dev
 
 var mdns = require('mdns');
-var dns = require('dns');
+var os = require('os');
 
 function start_advertisement(local_hostname) {
   process.stdout.write('DO THE LOCOMOTION!\n\n');
-  
+
   function xip_io_hostname(fragment) {
     return fragment + '.' + local_hostname + '.xip.io';
   }
-  
+
   // Loop through the applications and start advertising them
   for (var i = 0; i < pow_applications.length; i++) {
     var app_name = pow_applications[i];
     var local_pow_host = app_name + '.dev';
     var xip_host = xip_io_hostname(app_name);
-    
+
     var ad = mdns.createAdvertisement(mdns.tcp('http'), 80, { name: local_pow_host, host: xip_host });
     ad.start();
-    
+
     process.stdout.write('- ' + local_pow_host + ' => ' + xip_host + '\n');
   }
 }
 
 // Query the local hostname and start advertisement when ready.
 (function() {
-  dns.lookup(require('os').hostname(), function (err, address, family) {
-    start_advertisement(address);
-  });
+  var hostname = null;
+  var interfaces = require('os').networkInterfaces();
+  for (var dev in interfaces) {
+    interfaces[dev].forEach(function (details) {
+      if (details.family == 'IPv4') {
+        var addr = details.address;
+        if (addr == '127.0.0.1') return;
+        if (addr == 'undefined') return;
+        hostname = addr;
+      }
+    });
+  }
+  if (hostname == null) {
+    throw new Error('Could not detect IPv4 hostname.');
+    process.exit(1);
+  }
+  else {
+    start_advertisement(hostname);
+  }
 })();
