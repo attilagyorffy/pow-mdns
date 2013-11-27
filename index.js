@@ -2,7 +2,7 @@
 
   Pow application advertisement via mDNS (Avahi/Bonjour)
 
-  1) Find all Pow applications automatically
+  1) ✓ Find all Pow applications automatically
   2) ✓ query local network host
   3) ✓ generate xip-io hostname
   4) ✓ advertise the host on the network
@@ -21,18 +21,18 @@
 
 */
 
-
-/*
-
-  This should be automated, but for now we list all applications that we want to advertise.
-  Do NOT add the .dev fragment of the host. For example to advertise example.dev, add 'example'
-
-*/
-
-var pow_applications = ['example', 'pow']; // these will start advertising example.dev and pow.dev
-
 var mdns = require('mdns');
 var os = require('os');
+var fs = require('fs');
+
+function getPowApplications() {
+  function getPowDirectoryPath() {
+    return process.env.HOME + '/.pow';
+  }
+  return fs.readdirSync(getPowDirectoryPath());
+}
+
+var pow_applications = getPowApplications();
 
 function start_advertisement(local_hostname) {
   process.stdout.write('DO THE LOCOMOTION!\n\n');
