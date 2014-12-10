@@ -4,6 +4,9 @@
   "description": "Advertise Pow applications on the local network using Bonjour or Avahi",
   "keywords": ["pow", "bonjour", "mdns", "avahi"],
   "main": "index.js",
+  "bin": {
+    "pow-mdns": "./bin/pow-mdns"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,5 +15,8 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "mdns": "^2.2.2"
+  },
+  "bugs": {
+    "url" : "http://github.com/liquid/pow-mdns/issues"
   }
 }

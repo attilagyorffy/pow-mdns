@@ -1,3 +1,7 @@
+### v0.2.1 (10 Dec 2014)
+
+* [IMPROVEMENT] Add pow-mdns executable
+
 ### v0.2.0 (10 Dec 2014)
 
 * [BUGFIX] - Fix compatibility with latest version of Node (upgrade mDNS version to 2.2.2).

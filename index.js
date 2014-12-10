@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
 
   Pow application advertisement via mDNS (Avahi/Bonjour)
