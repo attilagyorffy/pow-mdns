@@ -2,6 +2,7 @@
   "name": "pow-mdns",
   "version": "0.2.0",
   "description": "Advertise Pow applications on the local network using Bonjour or Avahi",
+  "keywords": ["pow", "bonjour", "mdns", "avahi"],
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
