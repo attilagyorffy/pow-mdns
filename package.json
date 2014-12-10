@@ -10,6 +10,6 @@
   "author": "Attila Györffy",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "mdns": "~1.1.0"
+    "mdns": "^2.2.2"
   }
 }
